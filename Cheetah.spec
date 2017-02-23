@@ -4,7 +4,7 @@
 #
 Name     : Cheetah
 Version  : 2.4.4
-Release  : 10
+Release  : 11
 URL      : https://pypi.python.org/packages/source/C/Cheetah/Cheetah-2.4.4.tar.gz
 Source0  : https://pypi.python.org/packages/source/C/Cheetah/Cheetah-2.4.4.tar.gz
 Summary  : Cheetah is a template engine and code generation tool.
@@ -15,6 +15,7 @@ Requires: Cheetah-python
 BuildRequires : pbr
 BuildRequires : pip
 BuildRequires : python-dev
+BuildRequires : python3-dev
 BuildRequires : setuptools
 
 %description
@@ -44,11 +45,13 @@ python components for the Cheetah package.
 %setup -q -n Cheetah-2.4.4
 
 %build
+export LANG=C
+export SOURCE_DATE_EPOCH=1487881248
 python2 setup.py build -b py2
 
 %install
 rm -rf %{buildroot}
-python2 setup.py build -b py2 install --root=%{buildroot}
+python2 -tt setup.py build -b py2 install --root=%{buildroot}
 
 %files
 %defattr(-,root,root,-)
