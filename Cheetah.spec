@@ -4,9 +4,9 @@
 #
 Name     : Cheetah
 Version  : 2.4.4
-Release  : 13
-URL      : https://pypi.python.org/packages/source/C/Cheetah/Cheetah-2.4.4.tar.gz
-Source0  : https://pypi.python.org/packages/source/C/Cheetah/Cheetah-2.4.4.tar.gz
+Release  : 14
+URL      : http://pypi.debian.net/Cheetah/Cheetah-2.4.4.tar.gz
+Source0  : http://pypi.debian.net/Cheetah/Cheetah-2.4.4.tar.gz
 Summary  : Cheetah is a template engine and code generation tool.
 Group    : Development/Tools
 License  : HPND
@@ -21,10 +21,13 @@ BuildRequires : python3-dev
 BuildRequires : setuptools
 
 %description
-Cheetah is an open source template engine and code generation tool.
 It can be used standalone or combined with other tools and frameworks. Web
-development is its principle use, but Cheetah is very flexible and is also being
-used to generate C++ game code, Java, sql, form emails and even Python code.
+        development is its principle use, but Cheetah is very flexible and is also being
+        used to generate C++ game code, Java, sql, form emails and even Python code.
+        
+        Documentation
+        ================================================================================
+        For a high-level introduction to Cheetah please refer to the User's Guide
 
 %package bin
 Summary: bin components for the Cheetah package.
@@ -47,8 +50,11 @@ python components for the Cheetah package.
 %setup -q -n Cheetah-2.4.4
 
 %build
+export http_proxy=http://127.0.0.1:9/
+export https_proxy=http://127.0.0.1:9/
+export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1488389494
+export SOURCE_DATE_EPOCH=1503073601
 python2 setup.py build -b py2
 
 %install
@@ -66,4 +72,4 @@ python2 -tt setup.py build -b py2 install --root=%{buildroot}
 
 %files python
 %defattr(-,root,root,-)
-/usr/lib/python*/*
+/usr/lib/python2*/*
