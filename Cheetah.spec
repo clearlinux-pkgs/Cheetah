@@ -4,14 +4,14 @@
 #
 Name     : Cheetah
 Version  : 2.4.4
-Release  : 20
+Release  : 21
 URL      : http://pypi.debian.net/Cheetah/Cheetah-2.4.4.tar.gz
 Source0  : http://pypi.debian.net/Cheetah/Cheetah-2.4.4.tar.gz
 Summary  : Cheetah is a template engine and code generation tool.
 Group    : Development/Tools
 License  : HPND
 Requires: Cheetah-bin
-Requires: Cheetah-legacypython
+Requires: Cheetah-python
 Requires: Markdown
 BuildRequires : Markdown
 BuildRequires : pbr
@@ -40,9 +40,19 @@ bin components for the Cheetah package.
 %package legacypython
 Summary: legacypython components for the Cheetah package.
 Group: Default
+Requires: python-core
 
 %description legacypython
 legacypython components for the Cheetah package.
+
+
+%package python
+Summary: python components for the Cheetah package.
+Group: Default
+Provides: cheetah-python
+
+%description python
+python components for the Cheetah package.
 
 
 %prep
@@ -53,7 +63,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1505000039
+export SOURCE_DATE_EPOCH=1528573146
 python2 setup.py build -b py2
 
 %install
@@ -72,3 +82,6 @@ python2 -tt setup.py build -b py2 install --root=%{buildroot}
 %files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files python
+%defattr(-,root,root,-)
