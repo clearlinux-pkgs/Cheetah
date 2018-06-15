@@ -16,7 +16,7 @@ Requires: Markdown
 BuildRequires : Markdown
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
