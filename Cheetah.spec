@@ -4,7 +4,7 @@
 #
 Name     : Cheetah
 Version  : 2.4.4
-Release  : 23
+Release  : 24
 URL      : http://pypi.debian.net/Cheetah/Cheetah-2.4.4.tar.gz
 Source0  : http://pypi.debian.net/Cheetah/Cheetah-2.4.4.tar.gz
 Summary  : Cheetah is a template engine and code generation tool.
