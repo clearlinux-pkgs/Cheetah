@@ -4,21 +4,19 @@
 #
 Name     : Cheetah
 Version  : 2.4.4
-Release  : 24
+Release  : 25
 URL      : http://pypi.debian.net/Cheetah/Cheetah-2.4.4.tar.gz
 Source0  : http://pypi.debian.net/Cheetah/Cheetah-2.4.4.tar.gz
 Summary  : Cheetah is a template engine and code generation tool.
 Group    : Development/Tools
 License  : HPND
-Requires: Cheetah-bin
-Requires: Cheetah-python
+Requires: Cheetah-bin = %{version}-%{release}
+Requires: Cheetah-license = %{version}-%{release}
+Requires: Cheetah-python = %{version}-%{release}
 Requires: Markdown
 BuildRequires : Markdown
-BuildRequires : pbr
-BuildRequires : pip
-
-BuildRequires : python3-dev
-BuildRequires : setuptools
+BuildRequires : buildreq-distutils
+BuildRequires : buildreq-distutils3
 
 %description
 It can be used standalone or combined with other tools and frameworks. Web
@@ -32,6 +30,7 @@ It can be used standalone or combined with other tools and frameworks. Web
 %package bin
 Summary: bin components for the Cheetah package.
 Group: Binaries
+Requires: Cheetah-license = %{version}-%{release}
 
 %description bin
 bin components for the Cheetah package.
@@ -44,6 +43,14 @@ Requires: python-core
 
 %description legacypython
 legacypython components for the Cheetah package.
+
+
+%package license
+Summary: license components for the Cheetah package.
+Group: Default
+
+%description license
+license components for the Cheetah package.
 
 
 %package python
@@ -63,11 +70,13 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1528573146
+export SOURCE_DATE_EPOCH=1540412827
 python2 setup.py build -b py2
 
 %install
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/Cheetah
+cp LICENSE %{buildroot}/usr/share/package-licenses/Cheetah/LICENSE
 python2 -tt setup.py build -b py2 install --root=%{buildroot}
 
 %files
@@ -82,6 +91,10 @@ python2 -tt setup.py build -b py2 install --root=%{buildroot}
 %files legacypython
 %defattr(-,root,root,-)
 /usr/lib/python2*/*
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/Cheetah/LICENSE
 
 %files python
 %defattr(-,root,root,-)
